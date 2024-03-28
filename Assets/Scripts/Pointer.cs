@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Pointer : MonoBehaviour
 {
-    public Transform Aim;
-    public Camera PlayerCamera;
-    public Transform Body;
+    [SerializeField] public Transform Aim;
+    [SerializeField] public Camera PlayerCamera;
+    [SerializeField] public Transform Body;
 
     float _yEuler;
 

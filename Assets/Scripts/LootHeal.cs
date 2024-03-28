@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LootHeal : MonoBehaviour
 {
-    public int HealthValue = 1;
+    [SerializeField] public int HealthValue = 1;
 
     private void OnTriggerEnter(Collider other)
     {

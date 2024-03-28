@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Rabbit : MonoBehaviour
 {
-    public float AttackPeriod = 7f;
-    public Animator Animator;
-    private float _timer;
+    [SerializeField] public float AttackPeriod = 7f;
+    [SerializeField] public Animator Animator;
+    [SerializeField] private float _timer;
 
 
     // Update is called once per frame

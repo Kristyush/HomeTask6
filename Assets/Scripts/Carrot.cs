@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Carrot : MonoBehaviour
 {
-    public Rigidbody Rigidbody;
-    public float Speed;
+    [SerializeField] public Rigidbody Rigidbody;
+    [SerializeField] public float Speed;
     void Start()
     {
         Transform playerTransform = FindObjectOfType<PlayerMove>().transform;

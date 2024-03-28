@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public Rigidbody Rigidbody;
-    public float MoveSpeed;
-    public float JumpSpeed;
-    public float Friction;
-    public bool isGrounded;
-    public float MaxSpeed;
-    public Transform ColliderTransform;
+    [SerializeField] public Rigidbody Rigidbody;
+    [SerializeField] public float MoveSpeed;
+    [SerializeField] public float JumpSpeed;
+    [SerializeField] public float Friction;
+    [SerializeField] public bool isGrounded;
+    [SerializeField] public float MaxSpeed;
+    [SerializeField] public Transform ColliderTransform;
     private void Update()
     {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.S) || isGrounded == false)

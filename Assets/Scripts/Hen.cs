@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Hen : MonoBehaviour
 {
-    public Rigidbody Rigidbody;
-    private Transform _playerTransform;
+    [SerializeField] public Rigidbody Rigidbody;
+    [SerializeField] private Transform _playerTransform;
 
-    public float Speed = 3f;
-    public float TimeToReachSpeed = 1f;
+    [SerializeField] public float Speed = 3f;
+    [SerializeField] public float TimeToReachSpeed = 1f;
 
     private void Start()
     {

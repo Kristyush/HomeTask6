@@ -5,13 +5,13 @@ using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
-    public GameObject BulletPrefab;
-    public Transform Spawn;
-    public float BulletSpeed = 10;
-    public float ShotPeriod = 0.2f;
-    public AudioSource ShotSound;
-    public GameObject Flash;
-    private float _timer;
+    [SerializeField] public GameObject BulletPrefab;
+    [SerializeField] public Transform Spawn;
+    [SerializeField] public float BulletSpeed = 10;
+    [SerializeField] public float ShotPeriod = 0.2f;
+    [SerializeField] public AudioSource ShotSound;
+    [SerializeField] public GameObject Flash;
+    [SerializeField] private float _timer;
     void Update()
     {
         _timer += Time.deltaTime;

@@ -5,19 +5,19 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int Health = 5;
-    public int MaxHealth = 8;
+    [SerializeField] public int Health = 5;
+    [SerializeField] public int MaxHealth = 8;
 
-    private bool _invulnerable = false;
+    [SerializeField] private bool _invulnerable = false;
 
     //public AudioSource TakeDamageSound;
-    public AudioSource AddHealthSound;
-    public HealthUI HealthUI;
+    [SerializeField] public AudioSource AddHealthSound;
+    [SerializeField] public HealthUI HealthUI;
 
     //public DamageScreen DamageScreen;
     //public Blink Blink;
 
-    public UnityEvent EventOnTakeDamage;
+    [SerializeField] public UnityEvent EventOnTakeDamage;
 
     private void Start()
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-    public GameObject HealthIconPrefab;
-    public List<GameObject> HealthIcons = new List<GameObject>();
+    [SerializeField] public GameObject HealthIconPrefab;
+    [SerializeField] public List<GameObject> HealthIcons = new List<GameObject>();
 
     public void Setup(int maxHealth)
     {
