@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damageValue)
     {
         Health -= damageValue;
-        if (Health < 0)
+        if (Health <= 0)
         {
             Die();
         }
