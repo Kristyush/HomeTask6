@@ -2,28 +2,28 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] public Rigidbody Rigidbody;
-    [SerializeField] public float MoveSpeed;
-    [SerializeField] public float JumpSpeed;
-    [SerializeField] public float Friction;
-    [SerializeField] public bool isGrounded;
-    [SerializeField] public float MaxSpeed;
-    [SerializeField] public Transform ColliderTransform;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _jumpSpeed;
+    [SerializeField] private float _friction;
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private Transform _colliderTransform;
     private void Update()
     {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.S) || isGrounded == false)
         {
-            ColliderTransform.localScale = Vector3.Lerp(ColliderTransform.localScale, new Vector3(1f, 0.5f, 1f), Time.deltaTime*15f);
+            _colliderTransform.localScale = Vector3.Lerp(_colliderTransform.localScale, new Vector3(1f, 0.5f, 1f), Time.deltaTime*15f);
         } else
         {
-            ColliderTransform.localScale = new Vector3(1f, 1f, 1f);
+            _colliderTransform.localScale = Vector3.one;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
             {
-                Rigidbody.AddForce(0, JumpSpeed, 0, ForceMode.VelocityChange);
+                _rigidbody.AddForce(0, _jumpSpeed, 0, ForceMode.VelocityChange);
             }
         }
     }
@@ -35,11 +35,11 @@ public class PlayerMove : MonoBehaviour
         if (isGrounded == false)
         {
             speedMultiplier = 0.1f;
-            if (Rigidbody.velocity.x > MaxSpeed && Input.GetAxis("Horizontal") > 0)
+            if (_rigidbody.velocity.x > _maxSpeed && Input.GetAxis("Horizontal") > 0)
             {
                 speedMultiplier = 0;
             }
-            if (Rigidbody.velocity.x < -MaxSpeed && Input.GetAxis("Horizontal") < 0)
+            if (_rigidbody.velocity.x < -_maxSpeed && Input.GetAxis("Horizontal") < 0)
             {
                 speedMultiplier = 0;
             }
@@ -47,10 +47,10 @@ public class PlayerMove : MonoBehaviour
 
 
 
-        Rigidbody.AddForce(Input.GetAxis("Horizontal") * MoveSpeed * speedMultiplier, 0, 0, ForceMode.VelocityChange);
+        _rigidbody.AddForce(Input.GetAxis("Horizontal") * _moveSpeed * speedMultiplier, 0, 0, ForceMode.VelocityChange);
         if (isGrounded)
         {
-            Rigidbody.AddForce(-Rigidbody.velocity.x * Friction, 0, 0, ForceMode.VelocityChange);
+            _rigidbody.AddForce(-_rigidbody.velocity.x * _friction, 0, 0, ForceMode.VelocityChange);
         }
     }
 
@@ -59,7 +59,7 @@ public class PlayerMove : MonoBehaviour
     {
         for (int i = 0; i < collision.contactCount; i++)
         {
-            float angle = Vector3.Angle(collision.contacts[i].normal, Vector3.up);
+            float angle = Vector3.Angle(collision.GetContact(i).normal, Vector3.up);
             if (angle < 45f)
             {
                 isGrounded = true;

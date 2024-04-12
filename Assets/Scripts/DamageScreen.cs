@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DamageScreen : MonoBehaviour
 {
-    [SerializeField] public Image DamageImage;
+    [SerializeField] private Image _damageImage;
 
     public void StartEffect()
     {
@@ -13,12 +13,12 @@ public class DamageScreen : MonoBehaviour
 
     public IEnumerator ShowEffect()
     {
-        DamageImage.enabled = true;
+        _damageImage.enabled = true;
         for (float t = 1; t > 0f; t -= Time.deltaTime)
         {
-            DamageImage.color = new Color(1, 0, 0, t);
+            _damageImage.color = new Color(1, 0, 0, t);
             yield return null;
         }
-        DamageImage.enabled = false;
+        _damageImage.enabled = false;
     }
 }

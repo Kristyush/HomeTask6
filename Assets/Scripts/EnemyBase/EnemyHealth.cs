@@ -3,17 +3,19 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int Health = 1;
+    [SerializeField] private int _health = 1;
 
-    public UnityEvent EventOnTakeDamage;
+    [SerializeField] private UnityEvent _eventOnTakeDamage;
     public void TakeDamage(int damageValue)
     {
-        Health -= damageValue;
-        if (Health <= 0)
+        _health -= damageValue;
+        _eventOnTakeDamage.Invoke();
+
+        if (_health <= 0)
         {
             Die();
         }
-        EventOnTakeDamage.Invoke();
+
     }
 
     public void Die()

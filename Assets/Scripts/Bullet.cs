@@ -1,10 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] public GameObject EffectPrefab;
+    [SerializeField] private GameObject _effectPrefab;
+    [SerializeField] private float _bulletSpeed = 10;
+
+    private void Awake()
+    {
+        gameObject.GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
+    }
 
     private void Start()
     {
@@ -13,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(EffectPrefab, transform.position, Quaternion.identity);
+        Instantiate(_effectPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
     }

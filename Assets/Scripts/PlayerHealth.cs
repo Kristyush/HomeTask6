@@ -5,44 +5,38 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] public int Health = 5;
-    [SerializeField] public int MaxHealth = 8;
+    [SerializeField] private int _health = 5;
+    [SerializeField] private int _maxHealth = 8;
 
-    [SerializeField] private bool _invulnerable = false;
+    private bool _invulnerable = false;
 
-    //public AudioSource TakeDamageSound;
-    [SerializeField] public AudioSource AddHealthSound;
-    [SerializeField] public HealthUI HealthUI;
+    [SerializeField] private AudioSource _addHealthSound;
+    [SerializeField] private HealthUI _healthUI;
 
-    //public DamageScreen DamageScreen;
-    //public Blink Blink;
-
-    [SerializeField] public UnityEvent EventOnTakeDamage;
+    [SerializeField] private UnityEvent _eventOnTakeDamage;
 
     private void Start()
     {
-        HealthUI.Setup(MaxHealth);
-        HealthUI.DisplayHealth(Health);
+        _healthUI.Setup(_maxHealth);
+        _healthUI.DisplayHealth(_health);
     }
     public void TakeDamage(int damageValue)
     {
         if (_invulnerable == false)
         {
-            Health -= damageValue;
+            _health -= damageValue;
 
-            if (Health <= 0)
+            if (_health <= 0)
             {
-                Health = 0;
+                _health = 0;
                 Die();
             }
             _invulnerable = true;
-            Invoke("StopInvulnerable", 1f);
-            //TakeDamageSound.Play();
-            HealthUI.DisplayHealth(Health);
-            //DamageScreen.StartEffect();
-            //Blink.StartBlink();
+            Invoke(nameof(StopInvulnerable), 1f);
 
-            EventOnTakeDamage.Invoke();
+            _healthUI.DisplayHealth(_health);
+
+            _eventOnTakeDamage.Invoke();
         }
     }
 
@@ -53,13 +47,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void AddHealth(int healthValue)
     {
-        Health += healthValue;
-        if (Health > MaxHealth)
+        _health += healthValue;
+        if (_health > _maxHealth)
         {
-            Health = MaxHealth;
+            _health = _maxHealth;
         }
-        AddHealthSound.Play();
-        HealthUI.DisplayHealth(Health);
+        _addHealthSound.Play();
+        _healthUI.DisplayHealth(_health);
 
     }
 

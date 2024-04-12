@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Head : MonoBehaviour
 {
-    [SerializeField] public Transform Target;
+    [SerializeField] private Transform _target;
     void Update()
     {
-        transform.position = Target.position;
+        transform.position = _target.position;
     }
 }

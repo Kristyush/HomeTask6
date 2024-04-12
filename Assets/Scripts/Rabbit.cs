@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Rabbit : MonoBehaviour
 {
-    [SerializeField] public float AttackPeriod = 7f;
-    [SerializeField] public Animator Animator;
-    [SerializeField] private float _timer;
+    [SerializeField] private float _attackPeriod = 7f;
+    [SerializeField] private Animator _animator;
+    private float _timer;
 
 
     // Update is called once per frame
     void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer > AttackPeriod)
+        if (_timer > _attackPeriod)
         {
             _timer = 0;
-            Animator.SetTrigger("Attack");
+            _animator.SetTrigger("Attack");
         }
-        
+
     }
 }

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class TakeDamageOnCollision : MonoBehaviour
 {
-    public EnemyHealth EnemyHealth;
-    public bool DieOnAnyCollision;
+    [SerializeField] private EnemyHealth _enemyHealth;
+    [SerializeField] private bool _dieOnAnyCollision;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.rigidbody)
         {
             if (collision.rigidbody.GetComponent<Bullet>())
             {
-                EnemyHealth.TakeDamage(1);
+                _enemyHealth.TakeDamage(1);
             }
         }
-        if(DieOnAnyCollision == true) 
+        if(_dieOnAnyCollision == true) 
         {
-            EnemyHealth.TakeDamage(1000);
+            _enemyHealth.TakeDamage(1000);
         }
     }
 }

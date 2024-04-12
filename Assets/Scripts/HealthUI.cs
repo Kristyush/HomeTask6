@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] public GameObject HealthIconPrefab;
-    [SerializeField] public List<GameObject> HealthIcons = new List<GameObject>();
+    [SerializeField] private GameObject _healthIconPrefab;
+    [SerializeField] private List<GameObject> _healthIcons = new List<GameObject>();
 
     public void Setup(int maxHealth)
     {
         for (int i = 0; i < maxHealth; i++)
         {
-            GameObject newIcon = Instantiate(HealthIconPrefab, transform);
-            HealthIcons.Add(newIcon);
+            GameObject newIcon = Instantiate(_healthIconPrefab, transform);
+            _healthIcons.Add(newIcon);
         }
 
     }
 
     public void DisplayHealth(int health)
     {
-        for (int i = 0; i < HealthIcons.Count; i++)
+        for (int i = 0; i < _healthIcons.Count; i++)
         {
-            if (i < health)
-            {
-                HealthIcons[i].SetActive(true);
-            } else
-            {
-                HealthIcons[i].SetActive(false);
-            }
+            _healthIcons[i].SetActive(i < health);
         }
     }
 }
